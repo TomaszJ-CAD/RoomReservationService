@@ -11,12 +11,10 @@ public class App {
 
         String developerVersion = developerVersion(isDeveloperVersion);
 
-        System.out.print("Witam w systemie rezerwacji dla Hotelu ");
-        System.out.println(hotelName);
-        System.out.print("Aktualna wersja systemu: ");
-        System.out.println(systemVersion);
-        System.out.print("Wersja deweloperska: ");
-        System.out.println(developerVersion);
+        System.out.print("Witam w systemie rezerwacji dla Hotelu " + hotelName);
+        System.out.print("Aktualna wersja systemu: " + systemVersion);
+        System.out.print("Wersja deweloperska: " + developerVersion);
+
 
         System.out.println("\n===========================\n");
         Scanner input = new Scanner(System.in);
@@ -41,12 +39,12 @@ public class App {
             System.out.println("Tworzymy nowego gościa.");
 
             try {
-            System.out.print("Podaj imię gościa: ");
-            String guestFirstName = input.next();
-            System.out.print("Podaj nazwisko gościa: ");
-            String guestLastName = input.next();
-            System.out.print("Podaj wiek gościa: ");
-            int guestAge = input.nextInt();
+                System.out.print("Podaj imię gościa: ");
+                String guestFirstName = input.next();
+                System.out.print("Podaj nazwisko gościa: ");
+                String guestLastName = input.next();
+                System.out.print("Podaj wiek gościa: ");
+                int guestAge = input.nextInt();
 
                 Guest createdGuest = new Guest(guestFirstName, guestLastName, guestAge);
 
@@ -55,9 +53,21 @@ public class App {
                 e.printStackTrace();
             }
 
-
         } else if (option == 2) {
-            System.out.println("Wybrano opcję 2");
+            System.out.println("Dodajemy nowy pokój");
+
+            try {
+                System.out.print("Podaj nr pokoju: ");
+                int roomNumber = input.nextInt();
+                System.out.print("Podaj ilość łóżek: ");
+                int numberOfBeds = input.nextInt();
+
+                Room addedRoom = new Room(roomNumber, numberOfBeds);
+            } catch (Exception e) {
+                System.out.println("Wprowadzone dane są niepoprawne!");
+                e.printStackTrace();
+            }
+
         } else if (option == 3) {
             System.out.println("Wybrano opcję 3");
         } else {

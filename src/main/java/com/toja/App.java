@@ -5,34 +5,11 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
 
-        String hotelName = "Zacisze";
-        int systemVersion = 1;
-        boolean isDeveloperVersion = true;
+        showSystemInfo();
 
-        String developerVersion = developerVersion(isDeveloperVersion);
-
-        System.out.print("Witam w systemie rezerwacji dla Hotelu " + hotelName);
-        System.out.print("Aktualna wersja systemu: " + systemVersion);
-        System.out.print("Wersja deweloperska: " + developerVersion);
-
-
-        System.out.println("\n===========================\n");
         Scanner input = new Scanner(System.in);
 
-        System.out.println("1. Dodaj nowego gościa.");
-        System.out.println("2. Dodaj nowy pokój.");
-        System.out.println("3. Wyszukaj gościa.");
-        System.out.println("Wybierz opcję: ");
-
-        int option = 0;
-
-        try {
-            option = input.nextInt();
-
-        } catch (Exception e) {
-            System.out.println("Niepoprawne dane wejściowe! Wybierz liczbę");
-            e.printStackTrace();
-        }
+        int option = getActionFromUser(input);
 
 
         if (option == 1) {
@@ -93,4 +70,37 @@ public class App {
             return "NIE";
         }
     }
+
+    static void showSystemInfo() {
+        String hotelName = "Zacisze";
+        int systemVersion = 1;
+        boolean isDeveloperVersion = true;
+
+        String developerVersion = developerVersion(isDeveloperVersion);
+
+        System.out.println("Witam w systemie rezerwacji dla Hotelu " + hotelName);
+        System.out.println("Aktualna wersja systemu: " + systemVersion);
+        System.out.println("Wersja deweloperska: " + developerVersion);
+
+        System.out.println("\n===========================\n");
+    }
+
+    static int getActionFromUser(Scanner in) {
+        System.out.println("1. Dodaj nowego gościa.");
+        System.out.println("2. Dodaj nowy pokój.");
+        System.out.println("3. Wyszukaj gościa.");
+        System.out.println("Wybierz opcję: ");
+
+        int actionNumber = 0;
+
+        try {
+            actionNumber = in.nextInt();
+
+        } catch (Exception e) {
+            System.out.println("Niepoprawne dane wejściowe! Wybierz liczbę");
+            e.printStackTrace();
+        }
+        return actionNumber;
+    }
+
 }

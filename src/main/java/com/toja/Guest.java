@@ -6,11 +6,9 @@ public class Guest {
     String lastName;
     int age;
 
-
     public Guest(String fistName, String lastName, int age) {
         this.firstName = fistName;
         this.lastName = lastName;
         this.age = age;
-
     }
 }

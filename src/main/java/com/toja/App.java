@@ -47,7 +47,11 @@ public class App {
                 int guestAge = input.nextInt();
 
                 Guest newGuest = new Guest(guestFirstName, guestLastName, guestAge);
-                System.out.println("Stworzono gościa: " + newGuest.firstName + " " + newGuest.lastName + ", " + newGuest.age + " lat." );
+
+                String info = String.format("Stworzono gościa: %s %s, %d lat.", newGuest.firstName, newGuest.lastName, newGuest.age);
+                System.out.println(info);
+
+                //System.out.println("Stworzono gościa: " + newGuest.firstName + " " + newGuest.lastName + ", " + newGuest.age + " lat.");
 
             } catch (Exception e) {
                 System.out.println("Wprowadzone dane są niepoprawne!");
@@ -64,7 +68,11 @@ public class App {
                 int numberOfBeds = input.nextInt();
 
                 Room newRoom = new Room(roomNumber, numberOfBeds);
-                System.out.println("Dodano pokój o numerze " + newRoom.number + " z " + newRoom.beds + ". łóżkiem/łóżkami");
+
+                String info = String.format("Dodano pokój o numerze %s z %d. łóżkiem/łóżkami.", newRoom.number, newRoom.beds);
+                System.out.println(info);
+
+                //System.out.println("Dodano pokój o numerze " + newRoom.number + " z " + newRoom.beds + ". łóżkiem/łóżkami.");
 
             } catch (Exception e) {
                 System.out.println("Wprowadzone dane są niepoprawne!");

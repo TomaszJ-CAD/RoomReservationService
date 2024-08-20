@@ -1,11 +1,28 @@
 package com.toja;
 
-public class Room {
-    int number;
-    int beds;
+import java.util.Arrays;
 
-    public Room(int number, int beds) {
+public class Room {
+    private int number;
+    private BedType[] bedType;
+
+    public Room(int number, BedType[] bedType) {
         this.number = number;
-        this.beds = beds;
+        this.bedType = bedType;
     }
+
+    public String getInfo() {
+
+        int numberOfBeds = bedType.length;
+
+        System.out.println("Rodzaje łóżek w pokoju: ");
+        for (int i = 0; i < numberOfBeds; i++) {
+
+            System.out.println(bedType[i] + " ");
+        }
+        System.out.println();
+        return String.format("Dodano pokój o numerze %s.", this.number);
+    }
+
+
 }

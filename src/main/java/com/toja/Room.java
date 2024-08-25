@@ -15,13 +15,14 @@ public class Room {
 
         int numberOfBeds = bedType.length;
 
-        System.out.println("Rodzaje łóżek w pokoju: ");
+        String bedInfo = "Rodzaje łóżek w pokoju:\n ";
+
         for (int i = 0; i < numberOfBeds; i++) {
 
-            System.out.println(bedType[i] + " ");
+            bedInfo = bedInfo + "\t" + this.bedType[i] + "\n";
         }
-        System.out.println();
-        return String.format("Dodano pokój o numerze %s.", this.number);
+
+        return String.format("Dodano pokój o numerze %d. %s", this.number, bedInfo);
     }
 
 

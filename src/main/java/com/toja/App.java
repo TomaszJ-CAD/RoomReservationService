@@ -1,8 +1,12 @@
 package com.toja;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class App {
+
+    private static TextUI textUI = new TextUI();
+
     public static void main(String[] args) {
 
         String hotelName = "Zacisze";
@@ -13,19 +17,39 @@ public class App {
 
         Scanner input = new Scanner(System.in);
 
+        try {
+            performAction(input);
+        } catch (WrongOptionException | OnlyNumberException e) {
+            System.out.println("Wystąpił niespodziewany błąd");
+            System.out.println("Kod błędu: " + e.getCode());
+            System.out.println("Komunikat błędu: " + e.getMessage());
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("Wystąpił niespodziewany błąd");
+            System.out.println("Nieznany kod błędu");
+            System.out.println("Komunikat błędu: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            System.out.println("Wychodzę z aplikacji");
+        }
+
+
+    }
+
+    private static void performAction(Scanner input) {
         int option = getActionFromUser(input);
 
 
         if (option == 1) {
-            Guest newGuest = createNewGuest(input);
+            textUI.readNewGuestData(input);
 
         } else if (option == 2) {
-            Room newRoom = createNewRoom(input);
+            textUI.readNewRoomData(input);
 
         } else if (option == 3) {
             System.out.println("Wybrano opcję 3");
         } else {
-            System.out.println("Wybrano niepoprawną opcję.");
+            throw new WrongOptionException("Wrong option in main menu.");
         }
     }
 
@@ -69,113 +93,11 @@ public class App {
         try {
             actionNumber = in.nextInt();
 
-        } catch (Exception e) {
-            System.out.println("Niepoprawne dane wejściowe! Wybierz liczbę");
-            e.printStackTrace();
+        } catch (InputMismatchException e) {
+            throw new OnlyNumberException("Use only numbers in main menu");
         }
         return actionNumber;
     }
 
-    private static Guest createNewGuest(Scanner in) {
-        System.out.println("Tworzymy nowego gościa.");
 
-        try {
-            System.out.print("Podaj imię gościa: ");
-            String guestFirstName = in.next();
-            System.out.print("Podaj nazwisko gościa: ");
-            String guestLastName = in.next();
-            System.out.print("Podaj wiek gościa: ");
-            int guestAge = in.nextInt();
-
-            Gender guestGender = chooseGenderType(in);
-
-            Guest newGuest = new Guest(guestFirstName, guestLastName, guestAge, guestGender);
-
-
-
-            System.out.println(newGuest.getInfo());
-
-            //System.out.println("Stworzono gościa: " + newGuest.firstName + " " + newGuest.lastName + ", " + newGuest.age + " lat.");
-            return newGuest;
-        } catch (Exception e) {
-            System.out.println("Wprowadzone dane są niepoprawne!");
-            e.printStackTrace();
-
-            return null;
-        }
-
-    }
-
-    private static Room createNewRoom(Scanner in) {
-        System.out.println("Dodajemy nowy pokój");
-
-        try {
-            System.out.print("Podaj nr pokoju: ");
-            int roomNumber = in.nextInt();
-
-            BedType bedType[] = chooseBedType(in);
-
-            Room newRoom = new Room(roomNumber, bedType);
-
-
-            System.out.println(newRoom.getInfo());
-
-            //System.out.println("Dodano pokój o numerze " + newRoom.number + " z " + newRoom.beds + ". łóżkiem/łóżkami.");
-
-            return newRoom;
-        } catch (Exception e) {
-            System.out.println("Wprowadzone dane są niepoprawne!");
-            e.printStackTrace();
-
-            return null;
-        }
-    }
-
-    private static BedType[] chooseBedType(Scanner in) {
-        System.out.println("Ile łóżek w pokoju?");
-        int bedNumber = in.nextInt();
-
-        BedType[] bedTypes = new BedType[bedNumber];
-
-        for(int i = 0; i < bedNumber; i++) {
-
-        System.out.println("Wybierz typ łóżka: ");
-        System.out.println("\t1. pojedyncze");
-        System.out.println("\t2. podwójne");
-        System.out.println("\t3. królewskie");
-        BedType bed = BedType.SINGLE; // wartość domyślna
-
-        System.out.println("Wybierz opcję: ");
-        int typeOfBeds = in.nextInt();
-
-        if (typeOfBeds == 1) {
-            bed = BedType.SINGLE;
-        } else if (typeOfBeds == 2) {
-            bed = BedType.DOUBLE;
-        } else if (typeOfBeds == 3) {
-            bed = BedType.KING_SIZE;
-        } else {
-            System.out.println("Nieprawidłowy typ łóżka, wybrano wartość domyślną.");
-        }
-        bedTypes[i] = bed;
-    }
-        return bedTypes;
-    }
-
-    private static Gender chooseGenderType(Scanner in) {
-        System.out.println("Podaj płeć gościa: ");
-        System.out.println("\t1. mężczyzna");
-        System.out.println("\t2. kobieta");
-        int guestGenderType = in.nextInt();
-        Gender guestGender = null;
-
-        if (guestGenderType == 1) {
-            guestGender = Gender.MALE;
-        } else if (guestGenderType == 2) {
-            guestGender = Gender.FEMALE;
-        } else {
-            System.out.println("Nieprawidłowy wybór!");
-        }
-        return guestGender;
-    }
 }

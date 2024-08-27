@@ -2,10 +2,10 @@ package com.toja.domain.guest;
 
 public class Guest {
 
-    private String firstName;
-    private String lastName;
-    private int age;
-    private Gender gender;
+    private final String firstName;
+    private final String lastName;
+    private final int age;
+    private final Gender gender;
 
     public Guest(String fistName, String lastName, int age, Gender gender) {
         this.firstName = fistName;
@@ -13,6 +13,7 @@ public class Guest {
         this.age = age;
         this.gender = gender;
     }
+
     // dzięki temu nie potrzebujemy getterów i setterów
     public String getInfo() {
 

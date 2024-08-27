@@ -2,7 +2,7 @@ package com.toja.domain.room;
 
 public class RoomService {
 
-    private RoomRepository repository = new RoomRepository();
+    private final RoomRepository repository = new RoomRepository();
 
     public Room createNewRoom(int number, BedType[] bedTypes) {
 

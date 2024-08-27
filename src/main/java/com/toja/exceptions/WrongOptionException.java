@@ -1,9 +1,8 @@
 package com.toja.exceptions;
 
-public class WrongOptionException extends ReservationCustomException{
+public class WrongOptionException extends ReservationCustomException {
 
-    private int code = 101;
-
+    private final int code = 101;
 
 
     public WrongOptionException(String message) {

@@ -14,10 +14,10 @@ import java.util.Scanner;
 
 public class TextUI {
 
-    GuestService guestService = new GuestService();
-    RoomService roomService = new RoomService();
+    private final GuestService guestService = new GuestService();
+    private final RoomService roomService = new RoomService();
 
-    public void readNewGuestData(Scanner in) {
+    private void readNewGuestData(Scanner in) {
         System.out.println("Tworzymy nowego gościa.");
 
         try {
@@ -58,7 +58,7 @@ public class TextUI {
         return guestGender;
     }
 
-    Room readNewRoomData(Scanner in) {
+    private void readNewRoomData(Scanner in) {
         System.out.println("Dodajemy nowy pokój");
 
         try {
@@ -70,7 +70,6 @@ public class TextUI {
             Room newRoom = roomService.createNewRoom(roomNumber, bedType);
 
             System.out.println(newRoom.getInfo());
-            return newRoom;
 
         } catch (InputMismatchException e) {
 

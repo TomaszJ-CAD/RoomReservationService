@@ -1,4 +1,13 @@
-package com.toja;
+package com.toja.ui.text;
+
+import com.toja.domain.guest.Gender;
+import com.toja.domain.guest.Guest;
+import com.toja.domain.guest.GuestService;
+import com.toja.domain.room.BedType;
+import com.toja.domain.room.Room;
+import com.toja.domain.room.RoomService;
+import com.toja.exceptions.OnlyNumberException;
+import com.toja.exceptions.WrongOptionException;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

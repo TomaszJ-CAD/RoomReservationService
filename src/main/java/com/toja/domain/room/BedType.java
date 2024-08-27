@@ -1,4 +1,4 @@
-package com.toja;
+package com.toja.domain.room;
 
 public enum BedType {
     SINGLE,

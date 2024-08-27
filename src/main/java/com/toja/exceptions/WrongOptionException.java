@@ -1,4 +1,4 @@
-package com.toja;
+package com.toja.exceptions;
 
 public class WrongOptionException extends ReservationCustomException{
 

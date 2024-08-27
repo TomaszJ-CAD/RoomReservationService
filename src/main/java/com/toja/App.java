@@ -1,6 +1,8 @@
 package com.toja;
 
 
+import com.toja.ui.text.TextUI;
+
 public class App {
 
     private static TextUI textUI = new TextUI();

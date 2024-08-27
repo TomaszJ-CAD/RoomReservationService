@@ -1,6 +1,4 @@
-package com.toja;
-
-import java.util.Arrays;
+package com.toja.domain.room;
 
 public class Room {
     private int number;

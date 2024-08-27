@@ -1,4 +1,4 @@
-package com.toja;
+package com.toja.exceptions;
 
 public class OnlyNumberException extends ReservationCustomException{
 

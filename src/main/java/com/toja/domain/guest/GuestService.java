@@ -1,4 +1,4 @@
-package com.toja;
+package com.toja.domain.guest;
 
 public class GuestService {
 

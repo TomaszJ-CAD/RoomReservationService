@@ -10,6 +10,7 @@ import com.toja.exceptions.OnlyNumberException;
 import com.toja.exceptions.WrongOptionException;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class TextUI {
@@ -33,7 +34,7 @@ public class TextUI {
 
             Guest newGuest = guestService.createNewGuest(guestFirstName, guestLastName, guestAge, guestGender);
 
-            System.out.println(newGuest.getInfo());
+            System.out.println("Dodano nowego gościa: " + newGuest.getInfo());
 
         } catch (InputMismatchException e) {
             throw new OnlyNumberException("Use only numbers when choosing gender");
@@ -169,19 +170,30 @@ public class TextUI {
                 readNewRoomData(input);
 
             } else if (option == 3) {
-                System.out.println("Wybrano opcję 3");
+                showAllGuest();
+
             } else if (option == 0) {
                 System.out.println("Wychodzę z programu.");
+
             } else {
                 throw new WrongOptionException("Wrong option in main menu.");
             }
         }
     }
 
+    private void showAllGuest() {
+        List<Guest> guests = this.guestService.getAllGuest();
+
+        for (Guest guest : guests) {
+            System.out.println(guest.getInfo());
+        }
+
+    }
+
     private static int getActionFromUser(Scanner in) {
         System.out.println("1. Dodaj nowego gościa.");
         System.out.println("2. Dodaj nowy pokój.");
-        System.out.println("3. Wyszukaj gościa.");
+        System.out.println("3. Wypisz wszystkich gości.");
         System.out.println("0. Wyjście z aplikacji.");
         System.out.println("Wybierz opcję: ");
 

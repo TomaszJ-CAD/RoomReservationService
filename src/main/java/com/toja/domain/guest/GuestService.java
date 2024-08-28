@@ -1,5 +1,7 @@
 package com.toja.domain.guest;
 
+import java.util.List;
+
 public class GuestService {
 
     private final GuestRepository repository = new GuestRepository();
@@ -8,5 +10,10 @@ public class GuestService {
 
 
         return repository.createNewGuest(firstName, lastName, age, gender);
+    }
+
+    public List<Guest> getAllGuest() {
+
+        return this.repository.getAll();
     }
 }

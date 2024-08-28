@@ -152,25 +152,29 @@ public class TextUI {
             System.out.println("Nieznany kod błędu");
             System.out.println("Komunikat błędu: " + e.getMessage());
             e.printStackTrace();
-        } finally {
-            System.out.println("Wychodzę z aplikacji");
         }
     }
 
     private void performAction(Scanner input) {
-        int option = getActionFromUser(input);
+        int option = -1;
 
+        while (option != 0) {
 
-        if (option == 1) {
-            readNewGuestData(input);
+            option = getActionFromUser(input);
 
-        } else if (option == 2) {
-            readNewRoomData(input);
+            if (option == 1) {
+                readNewGuestData(input);
 
-        } else if (option == 3) {
-            System.out.println("Wybrano opcję 3");
-        } else {
-            throw new WrongOptionException("Wrong option in main menu.");
+            } else if (option == 2) {
+                readNewRoomData(input);
+
+            } else if (option == 3) {
+                System.out.println("Wybrano opcję 3");
+            } else if (option == 0) {
+                System.out.println("Wychodzę z programu.");
+            } else {
+                throw new WrongOptionException("Wrong option in main menu.");
+            }
         }
     }
 
@@ -178,6 +182,7 @@ public class TextUI {
         System.out.println("1. Dodaj nowego gościa.");
         System.out.println("2. Dodaj nowy pokój.");
         System.out.println("3. Wyszukaj gościa.");
+        System.out.println("0. Wyjście z aplikacji.");
         System.out.println("Wybierz opcję: ");
 
         int actionNumber = 0;

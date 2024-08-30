@@ -20,7 +20,7 @@ public class Room {
             bedInfo = bedInfo + "\t" + this.bedType[i] + "\n";
         }
 
-        return String.format("Dodano pokój o numerze %d. %s", this.number, bedInfo);
+        return String.format("Pokój nr %d. %s", this.number, bedInfo);
     }
 
 

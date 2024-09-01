@@ -19,8 +19,14 @@ public class Guest {
 
         return String.format(" %s %s, %d lat, płeć %s.", this.firstName, this.lastName, this.age, this.gender);
     }
+
     String toCSV() {
-        return String.format("%s, %s, %d, %s\n", this.firstName, this.lastName, this.age, this.gender);
+        return String.format("%s,%s,%d,%s%s",
+                this.firstName,
+                this.lastName,
+                this.age,
+                this.gender,
+                System.getProperty("line.separator"));
     }
 
 }

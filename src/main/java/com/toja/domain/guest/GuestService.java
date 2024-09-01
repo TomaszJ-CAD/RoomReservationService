@@ -19,4 +19,8 @@ public class GuestService {
     public void saveAll() {
         repository.saveAll();
     }
+
+    public void readAll() {
+        this.repository.readAll();
+    }
 }

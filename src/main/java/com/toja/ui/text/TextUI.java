@@ -139,6 +139,10 @@ public class TextUI {
 //    }
 
     public void showMainMenu() {
+
+        System.out.println("Trwa ładowanie danych...");
+        this.guestService.readAll();
+
         Scanner input = new Scanner(System.in);
 
         try {

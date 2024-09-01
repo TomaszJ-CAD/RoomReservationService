@@ -31,7 +31,7 @@ public class GuestRepository {
 
         Path file = Paths.get(System.getProperty("user.home"), "reservation_system", name);
 
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder("");
         for (Guest guest : this.guests) {
             sb.append(guest.toCSV());
         }
@@ -45,8 +45,30 @@ public class GuestRepository {
 
             Files.writeString(file, sb.toString(), StandardCharsets.UTF_8);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
+    }
+
+    void readAll() {
+        String name = "guests.csv";
+        Path file = Paths.get(System.getProperty("user.home"), "reservation_system", name);
+
+        try {
+            String data = Files.readString(file, StandardCharsets.UTF_8);
+            String[] guestsAsString = data.split(System.getProperty("line.separator"));
+
+            for (String guestAsString : guestsAsString) {
+                String[] guestData = guestAsString.split(",");
+
+                int age = Integer.parseInt(guestData[2]);
+                Gender gender = Gender.valueOf(guestData[3]);
+                createNewGuest(guestData[0], guestData[1], age, gender);
+            }
+
+        } catch (IOException e) {
+            System.out.println("Nie udało się odczytać pliku z danymi");
+            e.printStackTrace();
+        }
     }
 }

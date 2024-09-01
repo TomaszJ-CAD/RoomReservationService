@@ -176,7 +176,8 @@ public class TextUI {
                 showAllRooms();
 
             } else if (option == 0) {
-                System.out.println("Wychodzę z programu.");
+                System.out.println("Wychodzę z programu. Zapisuję dane.");
+                this.guestService.saveAll();
 
             } else {
                 throw new WrongOptionException("Wrong option in main menu.");

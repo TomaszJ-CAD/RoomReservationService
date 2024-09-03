@@ -15,4 +15,12 @@ public class RoomService {
 
         return this.repository.getAll();
     }
+
+    public void saveAll() {
+        this.repository.saveAll();
+    }
+
+    public void readAll() {
+        this.repository.readAll();
+    }
 }

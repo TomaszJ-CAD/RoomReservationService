@@ -26,9 +26,8 @@ public class GuestRepository {
         return this.guests;
     }
 
-    void saveAll() {
+    public void saveAll() {
         String name = "guests.csv";
-
         Path file = Paths.get(System.getProperty("user.home"), "reservation_system", name);
 
         StringBuilder sb = new StringBuilder("");
@@ -50,7 +49,7 @@ public class GuestRepository {
 
     }
 
-    void readAll() {
+    public void readAll() {
         String name = "guests.csv";
         Path file = Paths.get(System.getProperty("user.home"), "reservation_system", name);
 

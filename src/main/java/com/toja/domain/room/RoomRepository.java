@@ -1,5 +1,7 @@
 package com.toja.domain.room;
 
+import com.toja.util.Properties;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -28,7 +30,7 @@ public class RoomRepository {
     public void saveAll() {
         String name = "rooms.csv";
 
-        Path file = Paths.get(System.getProperty("user.home"), "reservation_system", name);
+        Path file = Paths.get(Properties.DATA_DIRECTORY.toString(), name);
 
         StringBuilder sb = new StringBuilder("");
 
@@ -36,11 +38,6 @@ public class RoomRepository {
             sb.append(room.toCSV());
         }
         try {
-            Path reservation_system_dir = Paths.get(System.getProperty("user.home"), "reservation_system");
-
-            if (!Files.isDirectory(reservation_system_dir)) {
-                Files.createDirectory(reservation_system_dir);
-            }
             Files.writeString(file, sb.toString(), StandardCharsets.UTF_8);
 
         } catch (IOException e) {
@@ -51,7 +48,7 @@ public class RoomRepository {
     public void readAll() {
         String name = "rooms.csv";
 
-        Path file = Paths.get(System.getProperty("user.home"), "reservation_system", name);
+        Path file = Paths.get(Properties.DATA_DIRECTORY.toString(), name);
 
         try {
             String data = Files.readString(file, StandardCharsets.UTF_8);

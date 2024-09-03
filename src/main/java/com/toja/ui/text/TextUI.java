@@ -8,6 +8,7 @@ import com.toja.domain.room.Room;
 import com.toja.domain.room.RoomService;
 import com.toja.exceptions.OnlyNumberException;
 import com.toja.exceptions.WrongOptionException;
+import com.toja.util.Properties;
 
 import java.util.InputMismatchException;
 import java.util.List;
@@ -110,13 +111,13 @@ public class TextUI {
         return bedTypes;
     }
 
-    public void showSystemInfo(String hotelName, int systemVersion, boolean isDeveloperVersion) {
+    public void showSystemInfo() {
 
 
-        String developerVersion = developerVersion(isDeveloperVersion);
+        String developerVersion = developerVersion(Properties.IS_DEVELOPER_VERSION);
 
-        System.out.println("Witam w systemie rezerwacji dla Hotelu " + hotelName);
-        System.out.println("Aktualna wersja systemu: " + systemVersion);
+        System.out.println("Witam w systemie rezerwacji dla Hotelu " + Properties.HOTEL_NAME);
+        System.out.println("Aktualna wersja systemu: " + Properties.SYSTEM_VERSION);
         System.out.println("Wersja deweloperska: " + developerVersion);
 
         System.out.println("\n===========================\n");

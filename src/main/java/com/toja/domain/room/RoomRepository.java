@@ -1,5 +1,6 @@
 package com.toja.domain.room;
 
+import com.toja.domain.guest.Guest;
 import com.toja.exceptions.PersistenceToFileException;
 import com.toja.util.Properties;
 
@@ -17,7 +18,15 @@ public class RoomRepository {
 
     public Room createNewRoom(int number, BedType[] bedTypes) {
 
-        Room newRoom = new Room(number, bedTypes);
+        Room newRoom = new Room(findNewId(), number, bedTypes);
+        rooms.add(newRoom);
+
+        return newRoom;
+    }
+
+    public Room addRoomFromFile(int id, int number, BedType[] bedTypes) {
+
+        Room newRoom = new Room(id, number, bedTypes);
         rooms.add(newRoom);
 
         return newRoom;
@@ -52,15 +61,19 @@ public class RoomRepository {
 
         Path file = Paths.get(Properties.DATA_DIRECTORY.toString(), name);
 
+        if (!Files.exists(file)) {
+            return;
+        }
+
         try {
             String data = Files.readString(file, StandardCharsets.UTF_8);
             String[] roomsAsString = data.split(System.getProperty("line.separator"));
 
             for (String roomAsString : roomsAsString) {
                 String[] roomData = roomAsString.split(",");
-
-                int number = Integer.parseInt(roomData[0]);
-                String bedTypesData = roomData[1];
+                int id = Integer.parseInt(roomData[0]);
+                int number = Integer.parseInt(roomData[1]);
+                String bedTypesData = roomData[2];
                 String[] bedsTypesAsString = bedTypesData.split("#");
 
                 BedType[] bedTypes = new BedType[bedsTypesAsString.length];
@@ -69,15 +82,23 @@ public class RoomRepository {
                     bedTypes[i] = BedType.valueOf(bedsTypesAsString[i]);
 
                 }
-                createNewRoom(number, bedTypes);
+                addRoomFromFile(id, number, bedTypes);
             }
 
         } catch (IOException e) {
             throw new PersistenceToFileException(file.toString(), "read", "room data");
 
         }
+    }
 
-
+    private int findNewId() {
+        int max = 0;
+        for (Room room : this.rooms) {
+            if (room.getId() > max) {
+                max = room.getId();
+            }
+        }
+        return max + 1;
     }
 }
 

@@ -1,12 +1,19 @@
 package com.toja.domain.room;
 
 public class Room {
+
+    private final int id;
     private final int number;
     private final BedType[] bedType;
 
-    public Room(int number, BedType[] bedType) {
+    public Room(int id, int number, BedType[] bedType) {
+        this.id = id;
         this.number = number;
         this.bedType = bedType;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getInfo() {
@@ -20,7 +27,7 @@ public class Room {
             bedInfo = bedInfo + "\t" + this.bedType[i] + "\n";
         }
 
-        return String.format("Pokój nr %d. %s", this.number, bedInfo);
+        return String.format("%d Pokój nr %d. %s", this.id, this.number, bedInfo);
     }
 
 
@@ -33,7 +40,8 @@ public class Room {
         }
         String bedTypes = String.join("#", bedsAsString);
 
-        return String.format("%d,%s%s",
+        return String.format("%d,%d,%s%s",
+                this.id,
                 this.number,
                 bedTypes,
                 System.getProperty("line.separator"));

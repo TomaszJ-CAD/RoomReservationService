@@ -1,6 +1,7 @@
 package com.toja.domain.guest;
 
 
+import com.toja.exceptions.PersistenceToFileException;
 import com.toja.util.Properties;
 
 import java.io.IOException;
@@ -41,7 +42,7 @@ public class GuestRepository {
             Files.writeString(file, sb.toString(), StandardCharsets.UTF_8);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new PersistenceToFileException(file.toString(), "write", "guest data");
         }
 
     }
@@ -63,8 +64,7 @@ public class GuestRepository {
             }
 
         } catch (IOException e) {
-            System.out.println("Nie udało się odczytać pliku z danymi");
-            e.printStackTrace();
+            throw new PersistenceToFileException(file.toString(), "read", "guest data");
         }
     }
 }

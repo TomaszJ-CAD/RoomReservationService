@@ -1,6 +1,7 @@
 package com.toja;
 
 
+import com.toja.exceptions.PersistenceToFileException;
 import com.toja.ui.text.TextUI;
 import com.toja.util.Properties;
 
@@ -16,7 +17,7 @@ public class App {
         try {
             Properties.createDataDirectory();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new PersistenceToFileException(Properties.DATA_DIRECTORY.toString(), "create", "directory");
         }
 
         textUI.showSystemInfo();

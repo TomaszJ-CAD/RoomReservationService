@@ -1,5 +1,6 @@
 package com.toja.domain.room;
 
+import com.toja.exceptions.PersistenceToFileException;
 import com.toja.util.Properties;
 
 import java.io.IOException;
@@ -41,7 +42,8 @@ public class RoomRepository {
             Files.writeString(file, sb.toString(), StandardCharsets.UTF_8);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new PersistenceToFileException(file.toString(), "write", "room data");
+
         }
     }
 
@@ -71,8 +73,8 @@ public class RoomRepository {
             }
 
         } catch (IOException e) {
-            System.out.println("Nie udało się odczytać pliku z danymi");
-            e.printStackTrace();
+            throw new PersistenceToFileException(file.toString(), "read", "room data");
+
         }
 
 

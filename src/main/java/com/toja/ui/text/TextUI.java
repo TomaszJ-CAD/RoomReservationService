@@ -7,6 +7,7 @@ import com.toja.domain.room.BedType;
 import com.toja.domain.room.Room;
 import com.toja.domain.room.RoomService;
 import com.toja.exceptions.OnlyNumberException;
+import com.toja.exceptions.PersistenceToFileException;
 import com.toja.exceptions.WrongOptionException;
 import com.toja.util.Properties;
 
@@ -149,7 +150,7 @@ public class TextUI {
 
         try {
             performAction(input);
-        } catch (WrongOptionException | OnlyNumberException e) {
+        } catch (WrongOptionException | OnlyNumberException | PersistenceToFileException e) {
             System.out.println("Wystąpił niespodziewany błąd");
             System.out.println("Kod błędu: " + e.getCode());
             System.out.println("Komunikat błędu: " + e.getMessage());

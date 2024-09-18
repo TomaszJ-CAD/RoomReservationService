@@ -89,4 +89,18 @@ public class GuestRepository {
         }
         return max + 1;
     }
+
+    public void remove(int id) {
+        int guestToBeRemoveIndex = -1;
+
+        for(int i = 0; i < this.guests.size(); i++) {
+            if(this.guests.get(i).getId() == id) {
+                guestToBeRemoveIndex = i;
+                break;
+            }
+        }
+        if (guestToBeRemoveIndex > -1) {
+            this.guests.remove(guestToBeRemoveIndex);
+        }
+    }
 }

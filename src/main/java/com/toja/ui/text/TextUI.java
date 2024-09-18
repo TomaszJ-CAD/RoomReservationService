@@ -182,6 +182,9 @@ public class TextUI {
             } else if (option == 4) {
                 showAllRooms();
 
+            } else if (option == 5) {
+                removeGuest(input);
+
             } else if (option == 0) {
                 System.out.println("Wychodzę z programu. Zapisuję dane.");
                 this.guestService.saveAll();
@@ -189,6 +192,18 @@ public class TextUI {
             } else {
                 throw new WrongOptionException("Wrong option in main menu.");
             }
+        }
+    }
+
+    private void removeGuest(Scanner in) {
+        System.out.println("Podaj id gościa do usunięcia");
+        try {
+            int id = in.nextInt();
+            this.guestService.removeGuest(id);
+
+        } catch (InputMismatchException e) {
+            throw new OnlyNumberException("Use only numbers when inserting ID");
+
         }
     }
 
@@ -211,10 +226,12 @@ public class TextUI {
     }
 
     private static int getActionFromUser(Scanner in) {
+        System.out.println();
         System.out.println("1. Dodaj nowego gościa.");
         System.out.println("2. Dodaj nowy pokój.");
         System.out.println("3. Wypisz wszystkich gości.");
         System.out.println("4. Wypisz wszystkie pokoje.");
+        System.out.println("5. Usuń gościa.");
         System.out.println("0. Wyjście z aplikacji.");
         System.out.println("Wybierz opcję: ");
 
